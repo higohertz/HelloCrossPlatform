@@ -44,3 +44,5 @@ set(EXECUTABLE_OUTPUT_PATH ${HH_ROOT_DIR}/build/bin/${CMAKE_SYSTEM_NAME}/${CMAKE
 set(GLM_TEST_ENABLE           OFF CACHE BOOL "do glm tests" FORCE)
 set(GLM_STATIC_LIBRARY_ENABLE ON  CACHE BOOL "do glm optional lib" FORCE)
 add_subdirectory(glm)
+
+add_subdirectory(glew/build/cmake)
