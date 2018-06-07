@@ -8,7 +8,7 @@ mkdir -p build
 cd build
 
 CMAKE_OPTIONS=()
-CMAKE_OPTIONS+=("-DHH_BUILD_PLATFORM_MACOS=1")
+CMAKE_OPTIONS+=("-DHH_BUILD_PLATFORM_MACOS=ON")
 if ! [[ -z $DEBUG ]]; then
   CMAKE_OPTIONS+=("-DCMAKE_BUILD_TYPE=Debug")
 else

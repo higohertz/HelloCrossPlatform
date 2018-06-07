@@ -4,6 +4,13 @@ project(libs)
 
 set(HH_ROOT_DIR ${CMAKE_CURRENT_SOURCE_DIR}/..)
 set(HH_LIBS_DIR ${HH_ROOT_DIR}/libs)
+set(HH_TMP ${HH_ROOT_DIR}/build/temp)
+
+option (HH_BUILD_PLATFORM_IOS     "Build for iOS"     OFF)
+option (HH_BUILD_PLATFORM_ANDROID "Build for Android" OFF)
+option (HH_BUILD_PLATFORM_WPHONE  "Build for wPhone"  OFF)
+option (HH_BUILD_PLATFORM_WINDOWS "Build for Windows" OFF)
+option (HH_BUILD_PLATFORM_MACOS   "Build for MacOS"   OFF)
 
 message("HH_ROOT_DIR = ${HH_ROOT_DIR}")
 message("HH_LIBS_DIR = ${HH_LIBS_DIR}")
@@ -37,12 +44,14 @@ else()
 endif()
 
 # set output directory
-set(LIBRARY_OUTPUT_PATH    ${HH_ROOT_DIR}/build/${PROJECT_NAME}/${CMAKE_SYSTEM_NAME}/${CMAKE_BUILD_TYPE})
+set(LIBRARY_OUTPUT_PATH    ${HH_ROOT_DIR}/build/libs/${CMAKE_SYSTEM_NAME}/${CMAKE_BUILD_TYPE})
 set(EXECUTABLE_OUTPUT_PATH ${HH_ROOT_DIR}/build/bin/${CMAKE_SYSTEM_NAME}/${CMAKE_BUILD_TYPE})
 
 # include libs
-set(GLM_TEST_ENABLE           OFF CACHE BOOL "do glm tests" FORCE)
-set(GLM_STATIC_LIBRARY_ENABLE ON  CACHE BOOL "do glm optional lib" FORCE)
-add_subdirectory(glm)
+#set(GLM_TEST_ENABLE           OFF CACHE BOOL "do glm tests" FORCE)
+#set(GLM_STATIC_LIBRARY_ENABLE ON  CACHE BOOL "do glm optional lib" FORCE)
+#add_subdirectory(glm)
 
-add_subdirectory(glew/build/cmake)
+if(NOT TARGET glew)
+    add_subdirectory(glew/build/cmake ${HH_TMP}/glew)
+endif()
