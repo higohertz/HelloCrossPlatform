@@ -2,19 +2,17 @@ cmake_minimum_required(VERSION 2.8)
 
 project(glew)
 
-if(NOT WIN32)
-	set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-attributes")
-endif()
+message("KI_LIBGLEW_DIR = ${KI_LIBGLEW_DIR}")
 
-include_directories(${KI_GLEW_DIR}/include)
+include_directories(${KI_LIBGLEW_DIR}/include)
 
-set(API
-	${KI_GLEW_DIR}/include/GL/glew.h
-	${KI_GLEW_DIR}/include/GL/glxew.h
-	${KI_GLEW_DIR}/include/GL/wglew.h)
+set(HEADERS
+	${KI_LIBGLEW_DIR}/include/GL/glew.h
+	${KI_LIBGLEW_DIR}/include/GL/glxew.h
+	${KI_LIBGLEW_DIR}/include/GL/wglew.h)
 
-source_group(API FILES ${API})
+set(SOURCES ${KI_LIBGLEW_DIR}/src/glew.c)
 
-set(SOURCES ${KI_GLEW_DIR}/src/glew.c)
+source_group(HEADERS FILES ${HEADERS})
 
-add_library(glew STATIC ${SOURCES} ${API})
+add_library(glew STATIC ${SOURCES} ${HEADERS})

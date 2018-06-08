@@ -10,11 +10,11 @@ set(KI_LIB_CMAKE_DIR   ${CMAKE_BINARY_DIR}/../cmake/lib)
 set(KI_LIB_SOURCES_DIR ${CMAKE_BINARY_DIR}/../lib)
 
 # set output pathes
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(LIBRARY_OUTPUT_PATH            ${CMAKE_BINARY_DIR}/lib/${CMAKE_SYSTEM_NAME}/${CMAKE_BUILD_TYPE})
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${LIBRARY_OUTPUT_PATH})
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${LIBRARY_OUTPUT_PATH})
 set(EXECUTABLE_OUTPUT_PATH         ${CMAKE_BINARY_DIR}/bin/${CMAKE_SYSTEM_NAME}/${CMAKE_BUILD_TYPE})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${EXECUTABLE_OUTPUT_PATH})
 
 # set user options
 option (KI_BUILD_PLATFORM_IOS     "Build for iOS"     OFF)
@@ -60,12 +60,20 @@ else()
     set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -O3 -Wno-reorder -Wreturn-type -DNDEBUG")
 endif()
 
+if(NOT WIN32)
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wno-attributes")
+endif()
+
 # include libs
-#set(GLM_TEST_ENABLE           OFF CACHE BOOL "do glm tests" FORCE)
-#set(GLM_STATIC_LIBRARY_ENABLE ON  CACHE BOOL "do glm optional lib" FORCE)
-#add_subdirectory(glm)
+if(NOT TARGET glm)
+    set(GLM_TEST_ENABLE           OFF CACHE BOOL "do glm tests" FORCE)
+    set(GLM_STATIC_LIBRARY_ENABLE ON  CACHE BOOL "do glm optional lib" FORCE)
+    set(KI_LIBGLM_DIR ${KI_LIB_SOURCES_DIR}/glm)
+    #add_subdirectory(${KI_LIBGLM_DIR} ${KI_TEMP}/glm)
+    add_subdirectory(${KI_LIB_CMAKE_DIR}/glm ${KI_TEMP}/glm)
+endif()
 
 if(NOT TARGET glew)
-    set(KI_GLEW_DIR ${KI_LIB_SOURCES_DIR}/glew)
+    set(KI_LIBGLEW_DIR ${KI_LIB_SOURCES_DIR}/glew)
     add_subdirectory(${KI_LIB_CMAKE_DIR}/glew ${KI_TEMP}/glew)
 endif()

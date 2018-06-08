@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DEBUG=1
-GENERATOR= #"Xcode" #"Unix Makefiles"
+GENERATOR= #"-G Xcode" #"Unix Makefiles"
 
 CMAKE_OPTIONS=()
 CMAKE_OPTIONS+=("-DKI_BUILD_PLATFORM_MACOS=ON")
@@ -20,4 +20,6 @@ cd build
 echo "CMAKE_OPTIONS: ${CMAKE_OPTIONS[@]}"
 cmake ${GENERATOR} ${CMAKE_OPTIONS[@]} ../cmake/lib
 
-make
+if [[ -z $GENERATOR ]]; then
+    make
+fi
