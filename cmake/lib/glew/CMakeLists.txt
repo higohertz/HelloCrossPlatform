@@ -15,6 +15,6 @@ set(HEADERS
 
 set(SOURCES ${KI_LIBGLEW_SOURCES_DIR}/src/glew.c)
 
-source_group(HEADERS FILES ${HEADERS})
+#source_group(HEADERS FILES ${HEADERS})
 
 add_library(glew STATIC ${SOURCES} ${HEADERS})

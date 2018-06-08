@@ -1,7 +1,9 @@
 #!/bin/bash
 
 DEBUG=1
-GENERATOR= #"-G Xcode" #"Unix Makefiles"
+GENERATOR=#"MSYS Makefile"
+#GENERATOR="-G Xcode"
+#GENERATOR="Unix Makefiles"
 
 CMAKE_OPTIONS=()
 CMAKE_OPTIONS+=("-DKI_BUILD_PLATFORM_MACOS=ON")
