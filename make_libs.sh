@@ -18,7 +18,7 @@ mkdir -p build
 cd build
 
 echo "CMAKE_OPTIONS: ${CMAKE_OPTIONS[@]}"
-cmake ${GENERATOR} ${CMAKE_OPTIONS[@]} ../cmake/lib
+cmake ${GENERATOR} ${CMAKE_OPTIONS[@]} ../cmake
 
 if [[ -z $GENERATOR ]]; then
     make
