@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DEBUG=1
+DEBUG=
 GENERATOR= #"-G Xcode" #"Unix Makefiles"
 
 CMAKE_OPTIONS=()
