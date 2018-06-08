@@ -67,7 +67,7 @@ endif()
 # include libs
 if(NOT TARGET glm)
     set(GLM_TEST_ENABLE           OFF CACHE BOOL "do glm tests" FORCE)
-    set(GLM_STATIC_LIBRARY_ENABLE ON  CACHE BOOL "do glm optional lib" FORCE)
+    set(GLM_STATIC_LIBRARY_ENABLE OFF CACHE BOOL "do glm optional lib" FORCE)
     add_subdirectory(${KI_LIB_CMAKE_DIR}/glm ${KI_TEMP}/glm)
 endif()
 
