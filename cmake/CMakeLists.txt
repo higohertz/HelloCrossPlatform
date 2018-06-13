@@ -6,12 +6,16 @@ set(KI_LIB_CMAKE_DIR   ${CMAKE_BINARY_DIR}/../cmake/lib)
 set(KI_LIB_SOURCES_DIR ${CMAKE_BINARY_DIR}/../lib)
 set(KI_GAME_SOURCES_DIR ${CMAKE_BINARY_DIR}/../src)
 
-subdirs(${KI_LIB_CMAKE_DIR}) # cmake it directly
+subdirs(${KI_LIB_CMAKE_DIR}) # cmake lib directly
+
+#########################################
+# 
+#########################################
 
 find_package(OpenGL REQUIRED)
 
 if(WIN32)
-	set(COMMON_LIBS ${OPENGL_LIBRARIES} glfw glm)
+	set(COMMON_LIBS ${OPENGL_LIBRARIES} glew glfw)
 	message(STATUS "WIN32 add libs: " ${COMMON_LIBS} )
 elseif (UNIX)
 	if(APPLE)
@@ -26,16 +30,16 @@ else()
 	message(STATUS "OTHER SYSTEM add libs: " ${COMMON_LIBS})
 endif()
 
+if(MSVC)
+    set_property(TARGET game APPEND PROPERTY LINK_FLAGS /SUBSYSTEM:CONSOLE)
+endif()
+
 #########################################
 # 
 #########################################
 
 link_directories(${LIBRARY_OUTPUT_PATH})
 
-add_executable(game WIN32 ${KI_GAME_SOURCES_DIR}/test/main.cpp ${ASSET_FILES} ${COMMON_HEADERS})
+add_executable(game WIN32 ${KI_GAME_SOURCES_DIR}/game/main.cpp ${ASSET_FILES} ${COMMON_HEADERS})
 
 target_link_libraries(game ${COMMON_LIBS})
-
-if(MSVC)
-    set_property(TARGET game APPEND PROPERTY LINK_FLAGS /SUBSYSTEM:CONSOLE)
-endif()
