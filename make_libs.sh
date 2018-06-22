@@ -21,7 +21,7 @@ mkdir -p build
 cd build
 
 echo "CMAKE_OPTIONS: ${CMAKE_OPTIONS[@]}"
-cmake ${GENERATOR} ${CMAKE_OPTIONS[@]} ../cmake/lib
+cmake ${GENERATOR} ${CMAKE_OPTIONS[@]} ../cmake/libs
 #cmake ${GENERATOR} ${CMAKE_OPTIONS[@]} ../src
 
 if [[ -z $GENERATOR ]]; then
