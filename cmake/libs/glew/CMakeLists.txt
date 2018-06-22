@@ -2,9 +2,7 @@ cmake_minimum_required(VERSION 2.8)
 
 project(glew)
 
-set(KI_LIBGLEW_SOURCES_DIR ${KI_LIB_SOURCES_DIR}/glew)
-message("KI_LIBGLEW_SOURCES_DIR = ${KI_LIBGLEW_SOURCES_DIR}")
-include_directories(${KI_LIBGLEW_SOURCES_DIR}/include)
+include(glew)
 
 set(HEADERS
 	${KI_LIBGLEW_SOURCES_DIR}/include/GL/glew.h

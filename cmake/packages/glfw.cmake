@@ -1,3 +1,6 @@
+
 set(KI_LIBGLFW_SOURCES_DIR ${KI_LIB_SOURCES_DIR}/glfw)
+
 message("KI_LIBGLFW_SOURCES_DIR = ${KI_LIBGLFW_SOURCES_DIR}")
+
 include_directories(${KI_LIBGLFW_SOURCES_DIR}/include)
