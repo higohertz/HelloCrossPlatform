@@ -14,6 +14,8 @@ subdirs(${KI_LIB_CMAKE_DIR}) # cmake lib directly
 
 find_package(OpenGL REQUIRED)
 
+include(${KI_LIB_CMAKE_DIR}/glew)
+
 if(WIN32)
 	set(COMMON_LIBS ${OPENGL_LIBRARIES} glew glfw)
 	message(STATUS "WIN32 add libs: " ${COMMON_LIBS} )
@@ -37,6 +39,8 @@ endif()
 #########################################
 # 
 #########################################
+
+#TODO: stub here
 
 link_directories(${LIBRARY_OUTPUT_PATH})
 

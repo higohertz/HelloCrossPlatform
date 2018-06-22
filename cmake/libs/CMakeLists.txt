@@ -9,12 +9,15 @@ project(lib)
 #########################################
 
 set(KI_TEMP ${CMAKE_BINARY_DIR}/temp)
-set(KI_LIB_CMAKE_DIR   ${CMAKE_BINARY_DIR}/../cmake/lib)
-set(KI_LIB_SOURCES_DIR ${CMAKE_BINARY_DIR}/../lib)
+set(KI_PACKAGE_CMAKE_DIR ${CMAKE_BINARY_DIR}/../cmake/packages)
+set(KI_LIB_CMAKE_DIR     ${CMAKE_BINARY_DIR}/../cmake/libs)
+set(KI_LIB_SOURCES_DIR   ${CMAKE_BINARY_DIR}/../libs)
 
 #########################################
 # set output pathes
 #########################################
+
+set(CMAKE_MODULE_PATH              ${CMAKE_MODULE_PATH} ) # tell CMake to search modules in directories 
 
 set(LIBRARY_OUTPUT_PATH            ${CMAKE_BINARY_DIR}/lib/${CMAKE_SYSTEM_NAME}/${CMAKE_BUILD_TYPE})
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${LIBRARY_OUTPUT_PATH})
@@ -56,7 +59,7 @@ elseif(KI_BUILD_PLATFORM_ANDROID)
 elseif(KI_BUILD_PLATFORM_WPHONE)
     message(FATAL_ERROR "Build platform not supported")
 elseif(KI_BUILD_PLATFORM_WINDOWS)
-    message(FATAL_ERROR "Build platform not supported")
+    #message(FATAL_ERROR "Build platform not supported")
 elseif(KI_BUILD_PLATFORM_MACOS)
     #message(FATAL_ERROR "Build platform not supported")
 endif()
