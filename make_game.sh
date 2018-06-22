@@ -16,15 +16,18 @@ fi
 
 ###############
 
-rm -rf build_libs
-mkdir -p build_libs
-cd build_libs
+rm -rf build_game
+mkdir -p build_game
+cd build_game
+
+echo "Copy 3d party libs"
+cp -R ../build_libs/libs .
 
 echo "CMAKE_OPTIONS: ${CMAKE_OPTIONS[@]}"
-cmake ${GENERATOR} ${CMAKE_OPTIONS[@]} ../cmake/libs
+cmake ${GENERATOR} ${CMAKE_OPTIONS[@]} ../src
 
 if [[ -z $GENERATOR ]]; then
     make
 else
-    open libs.xcodeproj
+    open game.xcodeproj
 fi
