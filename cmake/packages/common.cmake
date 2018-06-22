@@ -16,10 +16,13 @@ set(KI_GAME_SOURCES_DIR   ${CMAKE_BINARY_DIR}/../src)
 
 set(CMAKE_MODULE_PATH              ${CMAKE_MODULE_PATH} ${KI_PACKAGE_CMAKE_DIR}) # tell CMake to search modules in directories 
 
-set(LIBRARY_OUTPUT_PATH            ${CMAKE_BINARY_DIR}/libs/${CMAKE_SYSTEM_NAME}/${CMAKE_BUILD_TYPE})
+#set(LIBRARY_OUTPUT_PATH            ${CMAKE_BINARY_DIR}/libs/${CMAKE_SYSTEM_NAME}/${CMAKE_BUILD_TYPE}) # if generator == "" 
+set(LIBRARY_OUTPUT_PATH            ${CMAKE_BINARY_DIR}/libs/${CMAKE_SYSTEM_NAME})
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${LIBRARY_OUTPUT_PATH})
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${LIBRARY_OUTPUT_PATH})
-set(EXECUTABLE_OUTPUT_PATH         ${CMAKE_BINARY_DIR}/bin/${CMAKE_SYSTEM_NAME}/${CMAKE_BUILD_TYPE})
+
+#set(EXECUTABLE_OUTPUT_PATH         ${CMAKE_BINARY_DIR}/bin/${CMAKE_SYSTEM_NAME}/${CMAKE_BUILD_TYPE}) # if generator == "" 
+set(EXECUTABLE_OUTPUT_PATH         ${CMAKE_BINARY_DIR}/bin/${CMAKE_SYSTEM_NAME}) #
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${EXECUTABLE_OUTPUT_PATH})
 
 #########################################
@@ -35,6 +38,9 @@ option (KI_BUILD_PLATFORM_MACOS   "Build for MacOS"   OFF)
 #########################################
 # print output directory
 #########################################
+
+message("GENERATOR = ${CMAKE_GENERATOR}")
+message("BUILD_TYPE = ${CMAKE_BUILD_TYPE}")
 
 message("CMAKE_BINARY_DIR   = ${CMAKE_BINARY_DIR}")
 message("CMAKE_SOURCE_DIR   = ${CMAKE_SOURCE_DIR}")

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DEBUG=1
+DEBUG=
 #GENERATOR=
 GENERATOR="MSYS Makefile"
 #GENERATOR="-G Xcode"

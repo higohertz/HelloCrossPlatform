@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.0)
 
-project(lib)
+project(libs)
 
 include(${CMAKE_BINARY_DIR}/../cmake/packages/common.cmake)
 
