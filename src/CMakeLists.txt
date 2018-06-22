@@ -14,7 +14,7 @@ include(glm)
 find_package(OpenGL REQUIRED)
 
 if(WIN32)
-	set(COMMON_LIBS ${OPENGL_LIBRARIES} glew glfw)
+	set(COMMON_LIBS ${OPENGL_LIBRARIES} glew glfw3)
 	message(STATUS "WIN32 add libs: " ${COMMON_LIBS} )
 elseif (UNIX)
 	if(APPLE)
@@ -29,10 +29,6 @@ else()
 	message(STATUS "OTHER SYSTEM add libs: " ${COMMON_LIBS})
 endif()
 
-if(MSVC)
-    set_property(TARGET game APPEND PROPERTY LINK_FLAGS /SUBSYSTEM:CONSOLE)
-endif()
-
 #########################################
 # 
 #########################################
@@ -42,3 +38,7 @@ link_directories(${LIBRARY_OUTPUT_PATH})
 add_executable(game WIN32 ${KI_GAME_SOURCES_DIR}/game/main.cpp ${ASSET_FILES} ${COMMON_HEADERS})
 
 target_link_libraries(game ${COMMON_LIBS})
+
+if(MSVC)
+    set_property(TARGET game APPEND PROPERTY LINK_FLAGS /SUBSYSTEM:CONSOLE)
+endif()
