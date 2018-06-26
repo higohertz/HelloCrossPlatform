@@ -5,22 +5,6 @@ project(libs)
 include(${CMAKE_BINARY_DIR}/../cmake/packages/common.cmake)
 
 #########################################
-# 
-#########################################
-
-if(KI_BUILD_PLATFORM_IOS)
-    message(FATAL_ERROR "Build platform not supported")
-elseif(KI_BUILD_PLATFORM_ANDROID)
-    message(FATAL_ERROR "Build platform not supported")
-elseif(KI_BUILD_PLATFORM_WPHONE)
-    message(FATAL_ERROR "Build platform not supported")
-elseif(KI_BUILD_PLATFORM_WINDOWS)
-    #message(FATAL_ERROR "Build platform not supported")
-elseif(KI_BUILD_PLATFORM_MACOS)
-    #message(FATAL_ERROR "Build platform not supported")
-endif()
-
-#########################################
 # generate debug symbol
 #########################################
 

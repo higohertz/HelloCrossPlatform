@@ -59,3 +59,19 @@ message("KI_BUILD_PLATFORM_ANDROID = ${KI_BUILD_PLATFORM_ANDROID}")
 message("KI_BUILD_PLATFORM_WPHONE  = ${KI_BUILD_PLATFORM_WPHONE}")
 message("KI_BUILD_PLATFORM_WINDOWS = ${KI_BUILD_PLATFORM_WINDOWS}")
 message("KI_BUILD_PLATFORM_MACOS   = ${KI_BUILD_PLATFORM_MACOS}")
+
+#########################################
+# common checks
+#########################################
+
+if(KI_BUILD_PLATFORM_IOS)
+    message(FATAL_ERROR "Build platform not supported")
+elseif(KI_BUILD_PLATFORM_ANDROID)
+    message(FATAL_ERROR "Build platform not supported")
+elseif(KI_BUILD_PLATFORM_WPHONE)
+    message(FATAL_ERROR "Build platform not supported")
+elseif(KI_BUILD_PLATFORM_WINDOWS)
+    #message(FATAL_ERROR "Build platform not supported")
+elseif(KI_BUILD_PLATFORM_MACOS)
+    #message(FATAL_ERROR "Build platform not supported")
+endif()

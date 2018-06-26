@@ -1,5 +1,19 @@
 #!/bin/bash
 
+trap 'echo "ERROR occurred. ABORT..." >&2; exit 1;' 0
+set -e
+
+source "argparse.sh"
+ARGPARSE_VAR_PREFIX=
+
+echo "all params: $@"
+
+############################################################
+##
+## PARSE/SET ARGUMENTS
+##
+############################################################
+
 BUILD_LIBS_DIR=build_libs
 BUILD_GAME_DIR=build_game
 
@@ -11,17 +25,36 @@ GENERATOR="Xcode"
 BUILD_TYPE="Debug"
 #BUILD_TYPE="Release"
 
+putarg "arg='p:platform' dest='PLATFORM' count=1 description='Target platform (macos|windows|ios|android|wphone)'"
+putarg "arg='h:help' dest='HELP_USAGE' description='Show this help'"
+args_parse "$@" || { make_usage; exit 1; }
+[[ "x$HELP_USAGE" == "x1" ]] && { make_usage; exit 1; }
+
+############################################################
+##
+## RUN MAIN
+##
+############################################################
+
 function main()
 {
 	CMAKE_OPTIONS=()
 	CMAKE_OPTIONS+=("-G${GENERATOR}")
 	CMAKE_OPTIONS+=("-DCMAKE_BUILD_TYPE=$BUILD_TYPE")
-	CMAKE_OPTIONS+=("-DKI_BUILD_PLATFORM_MACOS=ON")
-
-	###############
+	case $PLATFORM in
+		macos)
+			CMAKE_OPTIONS+=("-DKI_BUILD_PLATFORM_MACOS=ON");;
+		windows)
+			CMAKE_OPTIONS+=("-DKI_BUILD_PLATFORM_WINDOWS=ON");;
+		ios)
+			CMAKE_OPTIONS+=("-DKI_BUILD_PLATFORM_IOS=ON");;
+		android)
+			CMAKE_OPTIONS+=("-DKI_BUILD_PLATFORM_ANDROID=ON");;
+		wphone)
+			CMAKE_OPTIONS+=("-DKI_BUILD_PLATFORM_WPHONE=ON");;
+	esac
 
 	MakeProjectLibs "1"
-
 	MakeProjectGame "1"
 	open $BUILD_GAME_DIR/game.xcodeproj
 }
