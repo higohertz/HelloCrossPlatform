@@ -22,8 +22,10 @@ GENERATOR="Xcode"
 #GENERATOR="Unix Makefiles"
 #GENERATOR="MSYS Makefile"
 
-BUILD_TYPE="Debug"
-#BUILD_TYPE="Release"
+#BUILD_TYPE="Debug"
+BUILD_TYPE="Release"
+
+PLATFORM="macos"
 
 putarg "arg='p:platform' dest='PLATFORM' count=1 description='Target platform (macos|windows|ios|android|wphone)'"
 putarg "arg='h:help' dest='HELP_USAGE' description='Show this help'"
@@ -54,9 +56,9 @@ function main()
 			CMAKE_OPTIONS+=("-DKI_BUILD_PLATFORM_WPHONE=ON");;
 	esac
 
-	MakeProjectLibs "1"
+#	MakeProjectLibs "1"
 	MakeProjectGame "1"
-	open $BUILD_GAME_DIR/game.xcodeproj
+#	open $BUILD_GAME_DIR/game.xcodeproj
 }
 
 ############################################################
@@ -116,3 +118,4 @@ function MakeProjectGame()
 ############################################################
 
 main "$@"
+trap - 0
