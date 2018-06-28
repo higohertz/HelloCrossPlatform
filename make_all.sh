@@ -56,7 +56,7 @@ function main()
 			CMAKE_OPTIONS+=("-DKI_BUILD_PLATFORM_WPHONE=ON");;
 	esac
 
-#	MakeProjectLibs "1"
+	MakeProjectLibs "1"
 	MakeProjectGame "1"
 #	open $BUILD_GAME_DIR/game.xcodeproj
 }
