@@ -13,3 +13,9 @@ C компилятор (CMAKE_C_COMPILER)
 
 Корневая системная директория (CMAKE_OSX_SYSROOT)
 С помощью этой настройки, мы сообщим компилятору где искать все стандартные системные библиотеки для выбранной платформы.
+
+[SWIFT PROJECTS]
+
+https://github.com/austinzheng/swift-2048
+https://github.com/gscalzo/FlappySwift
+https://github.com/asduk/Flight-Fight-In-Swift
